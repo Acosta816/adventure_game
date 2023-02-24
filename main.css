@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+@font-face {
+  font-family: "Pixel NES";
+  src: url("/font/Pixel_NES.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background: url("./images/chao_pattern.jpg") repeat 0 0; */
+  background-color: black;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  width: 800px;
+  margin-top: 26px;
+  margin-bottom: 20px;
+}
+
+.title {
+  width: 437px;
+  height: 83px;
+  border: solid 2px red;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+}
+
+.screen {
+  position: relative;
+  height: 683px;
+  border: solid 10px rgba(0, 150, 196, 0.811);
+  border-radius: 13px;
+  background: black;
+  background-size: contain;
+  cursor: url(./images/white-cartoon-hand-cursor.png), auto;
+}
+
+.inventoryIcon {
+  position: absolute;
+  top: 6px;
+  right: 0px;
+  height: 100px;
+  width: 82px;
+  background: url("./images/backpack.png") no-repeat;
+  background-size: contain;
+  z-index: 10;
+}
+
+.inventoryOpen {
+  background: rgba(0, 0, 0, 0.815);
+  position: absolute;
+  top: 0px;
+  left: 234px;
+  width: 80%;
+  border-radius: 13px;
+  height: 250px;
+}
+
+/* --------------------------Prison Cell------------------------------ */
+
+.prisonCell {
+  background-image: url("./images/jailcell.png");
+}
+
+.shine {
+  background: url(./images/shine.gif) no-repeat center;
+  background-size: contain;
+  position: absolute;
+  top: 482px;
+  left: 211px;
+  width: 20px;
+  height: 20px;
+}
+
+.shine:hover,
+.toilet:hover {
+  box-shadow: 0px 0px 5px 4px #ffe970c2;
+  border-radius: 20px;
+}
+
+.toilet {
+  position: absolute;
+  top: 346px;
+  right: 151px;
+  width: 20px;
+  height: 20px;
+}
+
+/* ------inventory items🎒 START */
+.inventoryItem {
+  width: 100px;
+  height: 100px;
+}
+
+.inventoryToolTip {
+  background: rgb(1 12 22 / 93%);
+  color: whitesmoke;
+  padding: 10px;
+  border: solid 2px #ffffff99;
+  font-size: 15px;
+  font-family: "Pixel NES";
+  font-weight: normal;
+  font-style: normal;
+  position: absolute;
+  bottom: -52px;
+  left: 238px;
+  width: 49%;
+  border-radius: 13px;
+  height: 135px;
+}
+
+.note {
+  background: url(./images/foldednote.png) no-repeat center;
+  background-size: contain;
+}
+
+/* ------inventory items🎒 END */
+
+.startButton {
+  width: 221px;
+  height: 89px;
+  background: whitesmoke;
+  position: absolute;
+  font-size: 30px;
+  top: 293px;
+  left: 468px;
+  border-radius: 23px;
+  /* border: solid 1px; */
+  cursor: url(./images/white-cartoon-hand-pointer.png), auto;
+}
+
+.infoBox {
+  display: flex;
+  margin-top: 9px;
+  margin-bottom: 20px;
+  height: 140px;
+  width: 100%;
+  align-self: center;
+}
+
+.petChatBox {
+  padding: 20px;
+  font-size: 22px;
+  color: whitesmoke;
+  border: solid 10px rgba(0, 150, 196, 0.811);
+  background-color: #110f0f;
+  border-radius: 13px;
+  width: 100%;
+  font-family: "Pixel NES";
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
