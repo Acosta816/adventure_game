@@ -83,6 +83,14 @@ main {
   background-image: url("./images/jailcell.png");
 }
 
+.prisonCellOpen {
+  background-image: url(./images/candle_glow.gif),
+    url(./images/jailcell_open.png);
+  background-size: 38px 48px, contain;
+  background-position: 1024px 408px, 0px 0px;
+  background-repeat: no-repeat;
+}
+
 .shine {
   background: url(./images/shine.gif) no-repeat center;
   background-size: contain;

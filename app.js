@@ -7,6 +7,7 @@ const allRooms = {
     name: "prisonCell",
     title: "The Prison Cell",
     class: "prisonCell",
+    class2: "prisonCellOpen",
     background: "jailcell.png",
     dialog: {
       intro: "You awaken in a dark cell. No recolection of how you got there.",
@@ -114,7 +115,7 @@ class Game {
     roomElement.classList.add(room.class); //adding the class of the currentRoom
 
     //if the room contains a begining dialog, we go ahead and add that
-    if (room.dialog.intro) {
+    if (room.dialog.intro !== undefined) {
       dialogBox.innerText = room.dialog.intro;
     }
 
@@ -148,42 +149,19 @@ class Game {
     inventoryOpen.appendChild(this.createInventoryItemHTML(item));
     document.querySelector(`.${item.screenClass}`).remove();
   };
-} //----------------------------end of game class
 
-class Room {
-  constructor(properties) {
-    this.name = properties.name;
-    this.title = properties.title;
-    this.screenItems = properties.screenItems;
-    // this.keyItems = properties.keyItems;
-    this.isCurrentRoom = false;
-    this.prerequisites = properties.prerequisites;
-    this.paths = properties.paths;
-  }
-
-  //accepts a path which is just a pointer
+  //accepts a path string from the room's pathsArray which is just a pointer
   takePath(pathName) {
     console.log(pathName);
-    console.log(`Current room: ${this.name}`);
+    console.log(`Current room: ${this.currentRoom.title}`);
     console.log(`You are taking ${pathName} path.`);
 
-    //if this room has already been visited, then we have it in our visitedRooms object, and we'll just go there.
-    if (game.visitedRooms[pathName]) {
-      const goTo = game.visitedRooms[pathName]; //capturing in variable for ease.
-      console.log(`Going back to ${goTo.name}`);
-      game.renderRoom(goTo);
-    } else {
-      console.log(pathName);
-      console.log(gameLevels[pathName].properties.name);
-      const goTo = new Room(gameLevels[pathName].properties);
-
-      game.currentRoom =
-        // const pathVariable = gameLevels[pathName].properties.name;
-        // const [gameLevels[pathName].properties.name'] = new Room(gameLevels[pathName].properties);
-        game.renderRoom(new Room(gameLevels[pathName]));
-    }
+    console.log(this.currentRoom);
+    this.currentRoom = allRooms[pathName];
+    console.log(this.currentRoom);
+    this.renderRoom(this.currentRoom);
   }
-} //-------------------------------end of room class
+} //----------------------------end of game class
 
 //-----start the game!!!! This is where you tell your story
 const startGame = () => {
@@ -222,8 +200,25 @@ const startGame = () => {
     toilet.classList.toggle("hidden");
   });
 
+  toilet.addEventListener("click", () => {
+    console.log(
+      "the toilet loosens up and you are able to slide it over to reveal a cave..."
+    );
+
+    //remove old class and add new class to prison room
+    roomElement.classList.replace(
+      game.currentRoom.class,
+      game.currentRoom.class2
+    );
+
+    //now replace the onclick listener
+    toilet.onclick = function () {
+      console.log("Going into the tunnel...");
+      game.takePath(game.currentRoom.pathsArray[0]);
+    };
+  });
   // game.currentRoom.takePath(game.currentRoom.paths[0]);
-};
+}; //-------------END of StartGame function
 
 //--launch
 startButton.addEventListener("click", startGame); //clicking on the start game button will start the game.
