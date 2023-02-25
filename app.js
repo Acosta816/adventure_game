@@ -15,6 +15,7 @@ const roomData = {
     dialog: {
       intro: "You awaken in a dark cell. No recolection of how you got there.",
       pickedUpNote: `📜What's this? a note?...[ placed in pocket🎒 ]`,
+      tunnelRevealed: `The toilet slides open revealing a secret Tunnel...`,
     },
     screenItems: [
       {
@@ -239,7 +240,7 @@ const startGame = () => {
       stoneGrindingSound.currentTime = 0; // seek to the start
       stoneGrindingSound.play(); // play it till it ends
     }
-    toilet.removeEventListener("click", playStoneGrindingSound);
+    toilet.removeEventListener("click", playStoneGrindingSound); //removing the click listener after using it.
   }
 
   shine.addEventListener("click", () => {
@@ -263,6 +264,8 @@ const startGame = () => {
     console.log(
       "the toilet loosens up and you are able to slide it over to reveal a cave..."
     );
+
+    dialogBox.innerText = game.currentRoom.dialog.tunnelRevealed;
 
     console.log(game.currentRoom.currentClass);
     console.log(game.currentRoom.classes.class2);
